@@ -4,13 +4,14 @@ import java.util.Scanner;
 import LinkedList.LinkedList;
 import DoublyLinkedList.DoublyLinkedList;
 import Stack.Stack;
+import Queue.Queue;
 
 public class Main {
 
     private static Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {
-        stackMenu();
+        queueMenu();
     }
 
     private static void mainMenu() {
@@ -265,6 +266,37 @@ public class Main {
         sb.append("6. Get the top element in the stack\n");
         sb.append("7. Clear stack (Remove all elements in the stack)\n");
         sb.append("8. Exit\n");
+        System.out.println(sb.toString());
+    }
+
+    private static void queueMenu() {
+        Queue<Integer> queue = new Queue<Integer>();
+        int opt, data = 0;
+        do {
+            queueOptions();
+            opt = in.nextInt();
+            switch (opt) {
+                case 1 -> {
+                    System.out.println("Add element at the end of the queue");
+                    data = in.nextInt();
+                    queue.enqueue(data);
+                }
+                case 2 -> System.out.println(queue.isEmpty());
+                case 3 -> System.out.println("The size of the queue is: " + queue.getSize());
+                case 4 -> queue.showList();
+                case 5 -> queue.dequeue();
+            }
+        }while (opt != 6);
+    }
+
+    private static void queueOptions(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("1. Add element to the queue\n");
+        sb.append("2. Verify if the queue is empty\n");
+        sb.append("3. Get the size of the queue\n");
+        sb.append("4. Show the data of the queue\n");
+        sb.append("5. Remove the first element of the queue\n");
+        sb.append("6. Exit\n");
         System.out.println(sb.toString());
     }
 }
