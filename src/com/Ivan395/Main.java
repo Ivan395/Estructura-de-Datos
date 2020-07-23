@@ -3,13 +3,14 @@ package com.Ivan395;
 import java.util.Scanner;
 import LinkedList.LinkedList;
 import DoublyLinkedList.DoublyLinkedList;
+import Stack.Stack;
 
 public class Main {
 
     private static Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {
-	mainMenu();
+        stackMenu();
     }
 
     private static void mainMenu() {
@@ -219,6 +220,51 @@ public class Main {
         sb.append("11. Get index of an element\n");
         sb.append("12. Get size of the linked list\n");
         sb.append("13. Exit\n");
+        System.out.println(sb.toString());
+    }
+
+    private static void stackMenu() {
+        Stack<Integer> stack = new Stack<Integer>();
+        int opt, data = 0;
+        do {
+            stackOptions();
+            opt = in.nextInt();
+            switch (opt) {
+                case 1 -> {
+                    System.out.println("Add an element in the stack");
+                    data = in.nextInt();
+                    stack.push(data);
+                }
+                case 2 -> System.out.println(stack.isEmpty());
+                case 3 -> System.out.printf("The size of the stack is: %d\n", stack.getSize());
+                case 4 -> stack.showList();
+                case 5 -> {
+                    try {
+                        int result = stack.pop();
+                        System.out.println("The element " + result + " was removed");
+                    }catch (NullPointerException ex) {
+                        System.out.println("The stack is empty");
+                    }
+                }
+                case 6 -> System.out.println("The top element is: " + stack.topElement());
+                case 7 -> {
+                    System.out.println("The stack was clear");
+                    stack.clear();
+                }
+            }
+        }while (opt != 8);
+    }
+
+    private static void stackOptions(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("1. Add element to the stack\n");
+        sb.append("2. Verify if the stack is empty\n");
+        sb.append("3. Get the size of the stack\n");
+        sb.append("4. Show the data of the stack\n");
+        sb.append("5. Remove the last element of the stack\n");
+        sb.append("6. Get the top element in the stack\n");
+        sb.append("7. Clear stack (Remove all elements in the stack)\n");
+        sb.append("8. Exit\n");
         System.out.println(sb.toString());
     }
 }
